@@ -1,5 +1,11 @@
-# todo-vue
+# Vue Js ToDo App
 
+<img width="600px" src="https://res.cloudinary.com/dp8dfuv68/image/upload/v1594407222/Vue%20Todo/Screenshot_2_bvevtz.png">
+
+<br>
+<br>
+
+ 
 ## Project setup
 ```
 yarn install
