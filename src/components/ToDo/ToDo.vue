@@ -1,10 +1,9 @@
 <template>
-    <div class="ToDo">
+    <div class="ToDo p-20 bg-light">
+        <h1>List Your Todos</h1>
         <input type="text" placeholder="Enter Your Todo" v-model="newTodo" v-on:keyup.enter="addTodo" class="todoInput">
         <div class="todos">
-            <ToDoItem v-for="todo in todosFiltered" :key="todo.id" :todo="todo"
-                      :checkAll="checkRemaining">
-            </ToDoItem>
+            <ToDoItem v-for="todo in todosFiltered" :key="todo.id" :todo="todo" :checkAll="checkRemaining"></ToDoItem>
             <div class="todo_meta">
                 <ToDoCompleteAll></ToDoCompleteAll>
                 <ToDoRemaining></ToDoRemaining>
@@ -19,7 +18,6 @@
 <script>
     import ToDoItem from './ToDoItem'
     import ToDoRemaining from './ToDoRemaining'
-    // import {EventBus} from '../../main'
     import ToDoCompleteAll from "./ToDoCompleteAll";
     import ToDoFilters from "./ToDoFilters";
 
@@ -43,6 +41,9 @@
             todosFiltered() {
                 return this.$store.getters.todosFiltered
             }
+        },
+        mounted() {
+           this.$store.dispatch('getTodos')
         },
         methods: {
             addTodo() {
@@ -76,7 +77,6 @@
 
     .remove {
         background: #273849;
-        padding: 5px;
         border-radius: 50%;
         height: 20px;
         width: 20px;
@@ -112,16 +112,6 @@
         text-align: right;
     }
 
-    .switch {
-        height: 20px;
-        width: 20px;
-        border-radius: 50%;
-        border: 2px solid #fff;
-        display: inline-block;
-        position: relative;
-        cursor: pointer;
-    }
-
     .todo_meta p {
         cursor: pointer;
     }
@@ -130,7 +120,6 @@
         width: 100%;
         border: 1px solid #42b983;
         padding: 15px 10px;
-        margin-top: 50px;
         font-size: 16px;
         color: #2c3e50;
         border-radius: 5px;
@@ -172,17 +161,17 @@
         display: inline-block;
         position: relative;
         cursor: pointer;
+        line-height: 20px;
     }
 
     .switch.checked:after {
         position: absolute;
-        height: 21px;
-        width: 21px;
+        height: 100%;
+        width: 100%;
         background: #2c3e50;
         left: 0;
         top: 0;
         content: "\2713";
-        line-height: 21px;
         font-size: 16px;
         text-align: center;
         border-radius: 50%;
@@ -233,5 +222,8 @@
         color: white;
         pointer-events: auto;
         opacity: 1;
+    }
+    .ToDo {
+        text-align: center;
     }
 </style>

@@ -9,7 +9,7 @@
         <button class="btn btn-completed" :class="{ active : activeFilter === 'completed-tasks' }"
                 v-on:click="changedFilter('completed-tasks')">Completed Tasks
         </button>
-        <button class="btn btn-clear btn-warning" :class="{ active : !markAllAsIncompleteBtn }"
+        <button class="btn btn-clear btn-warning" :class="{ active : !clearCompletedBtn }"
                 v-on:click="clearCompleted">Clear Completed Tasks
         </button>
     </div>
@@ -25,8 +25,8 @@
             activeFilter() {
                 return this.$store.state.activeFilter
             },
-            markAllAsIncompleteBtn() {
-                return this.$store.getters.markAllAsIncompleteBtn
+            clearCompletedBtn() {
+                return this.$store.getters.clearCompletedBtn
             },
         },
         methods: {

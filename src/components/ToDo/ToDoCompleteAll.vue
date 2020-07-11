@@ -2,7 +2,7 @@
     <div>
         <div class="text-left">
             <p v-on:click="markAllAsComplete"><span class="switch dark-border"
-                                                    :class="{checked : checkRemaining}"></span> Complete All
+                                                    :class="{checked : checkRemaining}"></span> {{changeCompleteAllText}}
             </p>
         </div>
     </div>
@@ -14,11 +14,14 @@
         computed:{
             checkRemaining(){
                 return this.$store.getters.checkRemaining
+            },
+            changeCompleteAllText(){
+                return this.$store.getters.changeCompleteAllText
             }
         },
         methods:{
             markAllAsComplete() {
-                this.$store.dispatch('markAllAsComplete')
+                this.$store.dispatch('markAllAsComplete', this.checkRemaining)
             },
         }
     };
